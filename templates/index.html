@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+ 
+ <style>
+      /* Modify the background color */
+       
+      .navbar-custom {
+          background-color: #dcdfe0;
+      }
+      /* Modify brand and text color */
+      .inputbox {
+           width: 400px;
+           height: 200px;
+           display: inline-block;
+      }
+      
+      .submit {
+          width: 400px;
+      }
+
+      
+
+  </style>
+
+
+  <title>Fake News prediction</title>
+  
+  
+
+</head>
+
+<body onLoad="updateTextColor()">
+  <nav class="navbar navbar-custom" >
+      <div>
+        <a class="navbar-brand m-2" href="#">
+          <img src="/static/images/logo.png" width="250" height="50" alt="">
+          </a>
+      </div>
+    </nav>
+
+    
+    
+    <h1 class="display-2 text-center">FAKE NEWS </h1>
+    <h1 class="display-3 text-center">DETECTION </h1>
+    <div class="d-flex justify-content-center">
+          <form action="{{ url_for('predict')}}"method="post">
+              
+              <textarea rows="5" cols="60" name="text" placeholder="Enter News" type="text" class="inputbox" name="percent biking" required="required" ></textarea>
+              <br/>
+              <button class = "btn btn-primary mt-2 submit" type="submit" class="btn btn-primary btn-block btn-large">Predict </button></p>
+          </form>
+  </div>
+
+ <div class="d-flex flex-row mb-3 justify-content-center">
+ <h1 class="display-4 text-center" id = "fake">FAKE </h1>
+ <h1 class="display-4 text-center mx-2"> | </h1>
+ <h1 class="display-4 text-center" id = "real">REAL </h1>
+</div>
+
+<figure class="text-end mx-2">
+  <blockquote class="blockquote">
+    <p>Created by </p>
+  </blockquote>
+  <figcaption class="blockquote-footer">
+     <cite title="Source Title">Group 3 </br>
+      Nitesh Chandra MBA/BA02/014 </br>
+      Deepak Ranjan Nayak MBA/BA02/008 </br>
+      Nirbhay Kamble MBA/BA02/013 </br>
+      Suraj Kumar MBA/BA02/022 </br>
+      Debashis Boruah MBA/BA02/007 </br>
+  </cite>
+     
+  </figcaption>
+</figure>
+
+ <script>
+
+  function updateTextColor() {
+      
+      var text = '{{ prediction_text }}';
+      const r = document.getElementById('real');
+      const f = document.getElementById('fake');
+
+      if (text === '[False]') {
+          f.style.color = 'red';
+          
+      } else if (text === '[ True]') {
+          r.style.color = 'green';
+
+      } else {
+          r.style.color = 'black'; // Default color
+          f.style.color = 'black'; // Default color
+          
+      }
+  }
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+</body>
+</html>
